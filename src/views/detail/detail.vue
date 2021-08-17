@@ -6,6 +6,8 @@
      <detail-base-info :goods="goodsInfo"/>
      <detailshop :shop="shop"></detailshop>
      <detail-info :detailInfo="detailInfo"></detail-info>
+     <detail-params-info :paramsInfo="paramsinfo"></detail-params-info>
+     <detail-comment-info :CommentInfo="CommentInfo"></detail-comment-info>
      </scroll>
  </div>
 </template>
@@ -18,8 +20,10 @@ import DetailBaseInfo from './childComps/DetailBaseInfo.vue';
 import Scroll from '../../components/common/scroll/Scroll.vue';
 import Detailshop from './childComps/detailshop.vue';
 import DetailInfo from './childComps/detailInfo.vue';
+import DetailParamsInfo from './childComps/detailParamsInfo.vue';
+import DetailCommentInfo from './childComps/detailCommentInfo.vue';
 export default {
-  components: { detailNavbar, Detailswiper ,DetailBaseInfo, Scroll, Detailshop,DetailInfo},
+  components: { detailNavbar, Detailswiper ,DetailBaseInfo, Scroll, Detailshop,DetailInfo, DetailParamsInfo, DetailCommentInfo},
     
     data(){
         return {
@@ -27,7 +31,9 @@ export default {
             imgs:[],
             goodsInfo:{},
             shop:{},
-            detailInfo:{}
+            detailInfo:{},
+            paramsinfo:{},
+            CommentInfo:{}
         }
     },
     created(){
@@ -50,6 +56,15 @@ export default {
 
              //展示穿着效果数据
              this.detailInfo = data.detailInfo
+
+             //获取详细页商品参数
+             this.paramsinfo = data.itemParams;
+
+             //获取评论
+             if (data.rate.cRate !== 0) {
+                 this.CommentInfo = data.rate.list[0]
+             }
+             
         })
 
 
