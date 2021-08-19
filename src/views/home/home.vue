@@ -2,12 +2,8 @@
     <div id="home" >
         <nav-bar class="nav-bar-home" ><div slot="center">购物街</div></nav-bar> 
          <scroll class="content" ref="scroll"
-         :probe-type="3"
-        @scroll="contentScroll"
-        :pull-up-load="true"
-        @pullingUp="loadMore"
          >
-         <home-swiper :banner="banner" @swiperImageLoad="swiperImageLoad" />
+         <home-swiper :banner="banner"    />
          <home-recommend-view :recommends="recommends"/>
          <feature-view />
          <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick"  />
@@ -84,7 +80,7 @@ export default {
             this.goods[type].page += 1;
 
 
-            this.$refs.scroll.finishPullUp();
+            // this.$refs.scroll.finishPullUp();
         })
         },
         
@@ -106,8 +102,11 @@ export default {
        },
 
        backtop(){
-            this.$refs.scroll.scroll.scrollTo(0,0)
+            this.$refs.scroll.scroll.scrollTo(0,0,500)
+           console.log(this.$refs.scroll.scroll); 
        },
+
+       
        
 
 

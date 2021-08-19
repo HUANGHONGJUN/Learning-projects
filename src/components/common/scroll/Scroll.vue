@@ -33,7 +33,8 @@
     },
     data() {
       return {
-        scroll: null
+        scroll:null,
+        tea:"得闲饮茶"
       }
     },
     mounted() {

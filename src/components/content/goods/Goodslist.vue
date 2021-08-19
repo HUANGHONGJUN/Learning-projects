@@ -25,6 +25,7 @@ export default {
 <style scoped>
 .Goodslist {
   display: flex;
+  /**均等分 */
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 0 10px;

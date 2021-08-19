@@ -2,7 +2,7 @@
 
 <div class="Goodsitem" @click='clickitem'>
     <div class="goods-img">
-        <img :src="goodsitem.show.img" alt="">
+        <img :src="showImage" alt="">
     </div>
     
     <div class="goods-info">
@@ -28,8 +28,17 @@ export default {
             }
         }
     },
+    computed:{
+      //这里判断用哪种数据类型，因为两个数据不一样
+      showImage(){
+        return this.goodsitem.image|| this.goodsitem.show.img 
+      }
+    },
     methods:{
+      //点击某一个商品根据id去展示相对应的数据
       clickitem(){
+        console.log(this.goodsitem.iid);
+        //通过动态路由把iid传到详情页
         this.$router.push('/detail/'+this.goodsitem.iid)
       }
     }

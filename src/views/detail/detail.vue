@@ -1,20 +1,21 @@
 <template>
  <div class="detail">
-     <detail-navbar  />
-     <scroll class="content">
+     <detail-navbar @titleclick="titleclick" />
+     <scroll class="content" ref="scroll">
          <detailswiper :imgs="imgs"/>
      <detail-base-info :goods="goodsInfo"/>
      <detailshop :shop="shop"></detailshop>
      <detail-info :detailInfo="detailInfo"></detail-info>
      <detail-params-info :paramsInfo="paramsinfo"></detail-params-info>
      <detail-comment-info :CommentInfo="CommentInfo"></detail-comment-info>
+     <goodslist :goods="recommends"></goodslist>
      </scroll>
  </div>
 </template>
 
 <script>
 import detailNavbar from './childComps/detailNavbar.vue';
-import {getdetail,Goods} from 'network/detailnetwrok.js'
+import {getdetail,Goods,getRecommend} from 'network/detailnetwrok.js'
 import Detailswiper from './childComps/detailswiper.vue';
 import DetailBaseInfo from './childComps/DetailBaseInfo.vue';
 import Scroll from '../../components/common/scroll/Scroll.vue';
@@ -22,8 +23,9 @@ import Detailshop from './childComps/detailshop.vue';
 import DetailInfo from './childComps/detailInfo.vue';
 import DetailParamsInfo from './childComps/detailParamsInfo.vue';
 import DetailCommentInfo from './childComps/detailCommentInfo.vue';
+import Goodslist from '../../components/content/goods/Goodslist.vue';
 export default {
-  components: { detailNavbar, Detailswiper ,DetailBaseInfo, Scroll, Detailshop,DetailInfo, DetailParamsInfo, DetailCommentInfo},
+  components: { detailNavbar, Detailswiper ,DetailBaseInfo, Scroll, Detailshop,DetailInfo, DetailParamsInfo, DetailCommentInfo, Goodslist},
     
     data(){
         return {
@@ -33,11 +35,14 @@ export default {
             shop:{},
             detailInfo:{},
             paramsinfo:{},
-            CommentInfo:{}
+            CommentInfo:{},
+            recommends:[],
+            topy:[0,100,2000,3000]
         }
     },
     created(){
         console.log(this.$route.params);
+        //将动态路由获取的参数this.$route.params.iid 赋值给iid
         this.iid = this.$route.params.iid
 
         //根据iid请求详细数据
@@ -67,8 +72,19 @@ export default {
              
         })
 
-
-    }
+        //请求详细数据
+        getRecommend().then(res =>{
+            console.log(res);
+            this.recommends = res.data.list
+        })
+    },
+    methods: {
+        titleclick(index){
+            console.log(index);
+            this.$refs.scroll.scrollTo(0,-this.topy[index],300)
+            
+        }
+    },
 }
 </script>
 

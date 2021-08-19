@@ -7,8 +7,12 @@ export function getdetail(iid) {
         iid
     }
    })
-   
-   
+}
+
+export function getRecommend() {
+    return request({
+        url:'/recommend'
+    })
 }
 
 //通过es6的类的方式来拿到各种单个数据
