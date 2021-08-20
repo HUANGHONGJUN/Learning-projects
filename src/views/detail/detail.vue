@@ -10,12 +10,13 @@
      <detail-comment-info :CommentInfo="CommentInfo"></detail-comment-info>
      <goodslist :goods="recommends"></goodslist>
      </scroll>
+     <detailbottomnav></detailbottomnav>
  </div>
 </template>
 
 <script>
 import detailNavbar from './childComps/detailNavbar.vue';
-import {getdetail,Goods,getRecommend} from 'network/detailnetwrok.js'
+import {getdetail,Goods,getRecommend,GoodsParam} from 'network/detailnetwrok.js'
 import Detailswiper from './childComps/detailswiper.vue';
 import DetailBaseInfo from './childComps/DetailBaseInfo.vue';
 import Scroll from '../../components/common/scroll/Scroll.vue';
@@ -24,8 +25,9 @@ import DetailInfo from './childComps/detailInfo.vue';
 import DetailParamsInfo from './childComps/detailParamsInfo.vue';
 import DetailCommentInfo from './childComps/detailCommentInfo.vue';
 import Goodslist from '../../components/content/goods/Goodslist.vue';
+import Detailbottomnav from './childComps/detailbottomnav.vue';
 export default {
-  components: { detailNavbar, Detailswiper ,DetailBaseInfo, Scroll, Detailshop,DetailInfo, DetailParamsInfo, DetailCommentInfo, Goodslist},
+  components: { detailNavbar, Detailswiper ,DetailBaseInfo, Scroll, Detailshop,DetailInfo, DetailParamsInfo, DetailCommentInfo, Goodslist, Detailbottomnav},
     
     data(){
         return {
@@ -63,7 +65,10 @@ export default {
              this.detailInfo = data.detailInfo
 
              //获取详细页商品参数
-             this.paramsinfo = data.itemParams;
+             this.paramsinfo = new GoodsParam(
+                 data.itemParams.info,
+                data.itemParams.rule
+             );
 
              //获取评论
              if (data.rate.cRate !== 0) {
@@ -81,7 +86,8 @@ export default {
     methods: {
         titleclick(index){
             console.log(index);
-            this.$refs.scroll.scrollTo(0,-this.topy[index],300)
+            
+             this.$refs.scroll.scrollTo(0,-this.topy[index],300)
             
         }
     },
@@ -89,8 +95,15 @@ export default {
 </script>
 
 <style scoped>
-
-/* .content{
+.detail{
+    height: 100vh;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+}
+.content{
+    background: #fff;
     height: calc(100% - 44px);
-} */
+    overflow: hidden;
+} 
 </style>

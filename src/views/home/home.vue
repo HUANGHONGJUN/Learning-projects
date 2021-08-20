@@ -115,6 +115,17 @@ export default {
 </script>
 
 <style scoped>
+ #home{
+    height: 100vh;
+    position: relative; 
+ }
+.content {
+  position: absolute;
+  top: 44px;
+  bottom: 49px;
+  left: 0;
+  right: 0;
+  overflow: hidden;}
 
     .nav-bar-home{
         background: pink;

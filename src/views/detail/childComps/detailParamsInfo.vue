@@ -1,29 +1,29 @@
 <template>
    <div class="param-info" v-if="Object.keys(paramsInfo).length !== 0">
-    <div v-for="(tables,index) in paramsInfo.rule.tables" :key="index">
+    
     <table
-      v-for="(table, index1) in tables"
+      v-for="(table, index) in paramsInfo.sizes"
       class="info-size"
-      :key="index1"
+      :key="index"
     >
-      <tr v-for="(tr, index2) in table" :key="index2">
-        <td v-for="(td, index3) in tr" :key="index3">
+      <tr v-for="(tr, index) in table" :key="index">
+        <td v-for="(td, index) in tr" :key="index">
           {{ td }}
         </td>
       </tr>
     </table>
-    </div>
+
 
     <table class="info-param">
-      <tr v-for="(info, index) in paramsInfo.infos" :key="index">
+      <tr v-for="(info, index) in paramsInfo.info.set" :key="index">
         <td class="info-param-key">{{ info.key }}</td>
         <td class="param-value">{{ info.value }}</td>
         <td></td>
       </tr>
     </table>
-    <div class="info-img" v-if="paramsInfo.info.images !== 0">
+    <!-- <div class="info-img" v-if="paramsInfo.info.images !== 0">
       <img :src="paramsInfo.info.images[0]" alt="" />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -37,7 +37,8 @@ export default {
                 return {}
             }
         }
-    }
+    },
+    
 }
 </script>
 
