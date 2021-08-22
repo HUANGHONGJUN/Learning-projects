@@ -18,12 +18,14 @@ export function getRecommend() {
 //通过es6的类的方式来拿到各种单个数据
 export class Goods {
     constructor(itemInfo, columns, service) {
+        this.title = itemInfo.title
         this.desc = itemInfo.desc
         this.newPrice = itemInfo.Price
         this.oldPrice = itemInfo.oldPrice
         this.discount = itemInfo.discountDesc
         this.columns = columns
         this.services = service
+        this.realprice = itemInfo.lowNowPrice
     }
 }
 

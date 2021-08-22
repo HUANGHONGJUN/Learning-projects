@@ -1,7 +1,7 @@
 <template>
   <div class="detail">
     <detail-navbar @titleclick="titleclick" />
-    <scroll class="content" ref="scroll" :probeType="3" @scroll="contentScroll" >
+    <scroll class="content" ref="scroll"  >
       <detailswiper :imgs="imgs" />
       <detail-base-info :goods="goodsInfo" />
       <detailshop :shop="shop"></detailshop>
@@ -16,7 +16,7 @@
       ></detail-comment-info>
       <goodslist :goods="recommends" ref="goodslist"></goodslist>
     </scroll>
-    <detailbottomnav></detailbottomnav>
+    <detailbottomnav @addToCart="addToCart"></detailbottomnav>
   </div>
 </template>
 
@@ -148,7 +148,7 @@ export default {
          this.topy.push(this.$refs.comment.$el.offsetTop);
          this.topy.push(this.$refs.goodslist.$el.offsetTop);
 
-         console.log(this.topy);
+          console.log(this.topy);
       });
   },
   methods: {
@@ -158,10 +158,20 @@ export default {
     },
     titleclick(index) {
       console.log(index);
-      this.$refs.scroll.scrollTo(0, -this.topy[index], 300);
+       this.$refs.scroll.scrollTo(0, -this.topy[index], 500);
     },
-    contentScroll(positon){
-        console.log(positon);
+    //  contentScroll(positon){
+    //       console.log(positon);
+    //  }
+    //请求购物车需要的商品信息
+    addToCart(){
+      //展示信息
+      const product = {}
+      product.image = this.imgs[0]
+      product.title = this.goodsInfo.title
+      product.desc = this.goodsInfo.desc
+      product.price = this.goodsInfo.realprice
+      product.iid = this.iid
     }
   },
 };
@@ -176,7 +186,7 @@ export default {
 }
 .content {
   background: #fff;
-  height: calc(100% - 44px);
+  height: calc(100% - 44px - 50px);
   overflow: hidden;
 }
 </style>
