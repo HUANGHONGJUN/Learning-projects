@@ -138,7 +138,7 @@ export default {
   },
   updated() {
       this.$nextTick(() => {
-          //根据最新的数据，对应do'm是已经被渲染出来了
+          //根据最新的数据，对应dom是已经被渲染出来了
           //但是图片还没加载完全(就是说获取到的offsettop是不包含图片的)
           //所以放在updataed里
          this.topy = [];
@@ -165,6 +165,8 @@ export default {
     //  }
     //请求购物车需要的商品信息
     addToCart(){
+      //把商品传入vuex判断是否存在，存在就+1
+
       //展示信息
       const product = {}
       product.image = this.imgs[0]
@@ -172,6 +174,9 @@ export default {
       product.desc = this.goodsInfo.desc
       product.price = this.goodsInfo.realprice
       product.iid = this.iid
+      console.log(this.$store.state.cartlist);
+      //将商品添加到购物车里面
+      this.$store.dispatch('addCart',product)
     }
   },
 };

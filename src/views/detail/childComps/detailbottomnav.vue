@@ -26,7 +26,7 @@ export default {
   name: "DetailBottomBar",
   methods: {
     addToCart() {
-      this.$emit('addCart')
+      this.$emit('addToCart')
     }
   }
 };
@@ -82,8 +82,8 @@ export default {
 .bar-right .cart {
   background-color: #ffe817;
   color: #333;
+  
 }
-
 .bar-right .buy {
   background-color: #f69;
 }
