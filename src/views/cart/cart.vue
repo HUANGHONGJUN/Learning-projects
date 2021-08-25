@@ -6,16 +6,19 @@
 
 
         <cartlist></cartlist>
-
+       <cart-bottom-bar />
     </div>
 </template>
 
 
 <script>
 import NavBar from '../../components/common/navbar/NavBar.vue'
+import CartBottomBar from './childComps/CartBottomBar.vue'
 import Cartlist from './childComps/cartlist.vue'
+
+
 export default {
-  components: { NavBar, Cartlist },
+  components: { NavBar,  Cartlist, CartBottomBar },
     name:"cart",
     computed:{
         cartlength(){

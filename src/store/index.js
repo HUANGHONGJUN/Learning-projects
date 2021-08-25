@@ -13,6 +13,8 @@ export default new Vuex.Store({
       payload.count ++
     },
     addToCart(state,payload){
+      //每当有商品加入按钮就默认为true 表示选中
+      payload.checked = true
       state.cartlist.push(payload)
     }
   },

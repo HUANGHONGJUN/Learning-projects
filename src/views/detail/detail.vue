@@ -85,7 +85,7 @@ export default {
         data.shopInfo.services
       );
 
-      //取出商品对象
+      //取出商品
       this.shop = data.shopInfo;
 
       //展示穿着效果数据

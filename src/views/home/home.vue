@@ -44,6 +44,7 @@ export default {
              recommends:[],
              goods:{
                  //把请求下来的数据的页数放在page，内容放在list
+                 //这里请求的是各类型数据的第一页
                  'pop':{page:0,list:[]},
                  'new':{page:0,list:[]},
                  'sell':{page:0,list:[]}

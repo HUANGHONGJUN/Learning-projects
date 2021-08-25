@@ -1,7 +1,7 @@
 <template>
   <div id="shop-item">
     <div class="item-selector">
-      <check-button :isCheck="itemInfo.check" @click.native="isCheck"/>
+      <check-button :isCheck="itemInfo.checked" @click.native="isCheck"/>
     </div>
     <div class="item-img">
       <img :src="itemInfo.image" alt="商品图片">
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     isCheck() {
-      this.itemInfo.check = !this.itemInfo.check
+      this.itemInfo.checked = !this.itemInfo.checked
     }
   }
 };
@@ -75,6 +75,10 @@ export default {
      margin-top: 13px;
      font-weight: 500;
      color: #666;
+     overflow: hidden;
+     /*在一行内显示 */
+     text-overflow: ellipsis;
+     white-space: nowrap;
  }
  .info-bottom{
      font-weight: 500;

@@ -1,5 +1,4 @@
 <template>
-
 <div class="Goodsitem" @click='clickitem'>
     <div class="goods-img">
         <img :src="showImage" alt="">
