@@ -88,7 +88,7 @@ export default {
       //取出商品
       this.shop = data.shopInfo;
 
-      //展示穿着效果数据
+      //取出展示穿着效果数据
       this.detailInfo = data.detailInfo;
 
       //获取详细页商品参数

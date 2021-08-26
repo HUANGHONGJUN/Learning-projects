@@ -1,12 +1,16 @@
 <template>
   <div class="bottom-bar">
     <div class="button">
-    <CheckButton class="check-button" />
+    <CheckButton class="check-button" :isCheck="isSelectAll"  />
     <span>全选</span>
     </div>
 
     <div class="cart-price">
       合计：{{totalPrice}}
+    </div>
+
+    <div class="calculate">
+      去计算:{{checkedlengt}}
     </div>
   </div>
 </template>
@@ -24,7 +28,17 @@ export default {
       }).reduce((preValue,item) =>{
         return preValue + item.price * item.count
       },0).toFixed(2)
-    }
+    },
+    checkedlengt(){
+      return this.$store.state.cartlist.filter(item =>item.checked).length
+    },
+    isSelectAll(){
+     return this.$store.state.cartlist.every(item =>item.checked)
+  
+    },
+  methods:{
+    
+  }
   }
 }
 </script>
@@ -33,7 +47,7 @@ export default {
  .bottom-bar{
    width: 100%;
    height: 50px;
-   background: rgb(221, 121, 121);
+   background: white;
    position: absolute;
    bottom: 40px;
    padding-top: 10px;
@@ -52,5 +66,9 @@ export default {
  }
  .cart-price{
    padding-left: 15px;
+ }
+ .calculate{
+   padding-left:90px ;
+   font-weight: 500;
  }
 </style>
