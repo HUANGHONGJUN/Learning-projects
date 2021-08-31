@@ -143,7 +143,7 @@ export default {
           //所以放在updataed里
          this.topy = [];
 
-        this.topy.push(0);
+         this.topy.push(0);
          this.topy.push(this.$refs.params.$el.offsetTop);
          this.topy.push(this.$refs.comment.$el.offsetTop);
          this.topy.push(this.$refs.goodslist.$el.offsetTop);

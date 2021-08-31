@@ -1,96 +1,53 @@
 <template>
     <div class="category" ref="category">
-       <h1>分类</h1> 
-       <ul class="content">
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶</li>
-           <li>得闲饮茶1</li>
-           <li>得闲饮茶</li>
-       </ul>
+       <nav-bar class="nav-bar">
+           <div slot="center">商品分类</div>
+           </nav-bar>
+           <div class="content">
+           <category-left-meue  :Category="category"/> 
+           </div>
     </div>
 </template>
 
 <script>
-import BScroll from 'better-scroll'
+import NavBar from '../../components/common/navbar/NavBar.vue'
+import { getCetagory} from "../../network/categorty"
+import CategoryLeftMeue from './categoryLeftMeue.vue'
 
 
 export default {
     name:'category',
+    components:{NavBar,  CategoryLeftMeue},
     data(){
         return {
-            scroll : null
+            category:[]
         }
     },
-   mounted(){
-       this.scroll = new BScroll(document.querySelector('.category'),{
-           
-       })
-   }
+    created(){
+        getCetagory().then(res =>{
+            console.log(res);
+            const data = res.data
+            this.category = data.category.list
+            
+        })
+    }
+   
 }
 </script>
 
 <style scoped>
 .category{
-    width: 100%;
-    height: 300px;
-    /* overflow: scroll; */
-    background: #666;
-    color: pink;
+   height:100vh
+}
+.nav-bar{
+    background-color: pink;
+    font-weight: 700;
+    color: rgb(7, 41, 41);
+}
+.content{
+  display: flex;
+  margin-top: 1px;
+  height: calc(100% - 44px - 49px);
+  overflow: hidden;
 }
 </style>

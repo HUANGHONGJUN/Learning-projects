@@ -33,12 +33,10 @@ export default {
       return this.$store.state.cartlist.filter(item =>item.checked).length
     },
     isSelectAll(){
+      //判断cartlist的所有商品checked属性是否为ture (默认为ture)
      return this.$store.state.cartlist.every(item =>item.checked)
   
     },
-  methods:{
-    
-  }
   }
 }
 </script>
