@@ -30,7 +30,7 @@ export default {
     computed:{
       //这里判断用哪种数据类型，因为两个数据不一样
       showImage(){
-        return this.goodsitem.image|| this.goodsitem.show.img 
+        return this.goodsitem.img|| this.goodsitem.image|| this.goodsitem.show.img 
       }
     },
     methods:{
