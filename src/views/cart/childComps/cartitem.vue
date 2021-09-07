@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     isCheck() {
-      this.itemInfo.checked = !this.itemInfo.checked
+      this.itemInfo.checked = ! this.itemInfo.checked
     }
   }
 };

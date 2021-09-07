@@ -25,6 +25,6 @@ export default {
 }
 .check {
   border-color: pink;
-  background-color: pink;
+  background-color: rgb(197, 85, 104);
 }
 </style>

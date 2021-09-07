@@ -103,7 +103,10 @@ export default {
     getCetagory().then((res) => {
       console.log(res);
       const data = res.data;
+      //获取list
       this.category = data.category.list;
+
+
       for (let i = 0; i < this.category.length; i++) {
         this.categoryData[i] = {
           subcategory: {},

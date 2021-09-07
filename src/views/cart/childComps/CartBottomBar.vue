@@ -1,7 +1,7 @@
 <template>
   <div class="bottom-bar">
     <div class="button">
-    <CheckButton class="check-button" :isCheck="isSelectAll"  />
+    <CheckButton class="check-button" :isCheck="isSelectAll" @click.native="checkClick" />
     <span>全选</span>
     </div>
 
@@ -35,9 +35,26 @@ export default {
     isSelectAll(){
       //判断cartlist的所有商品checked属性是否为ture (默认为ture)
      return this.$store.state.cartlist.every(item =>item.checked)
-  
+
+    
     },
+  },
+  methods:{
+    checkClick(){
+      //点击全选与全不选
+      if (this.isSelectAll) {
+        this.$store.state.cartlist.forEach((item) => {
+        item.checked = false
+      })
+      }else{
+        this.$store.state.cartlist.forEach((item) => {
+        item.checked = true
+      })
+      }
+      
+    }
   }
+  
 }
 </script>
 

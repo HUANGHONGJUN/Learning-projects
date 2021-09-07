@@ -16,7 +16,9 @@ export default new Vuex.Store({
       //每当有商品加入按钮就默认为true 表示选中
       payload.checked = true
       state.cartlist.push(payload)
-    }
+    },
+  
+
   },
   actions: {
     addCart(context,payload){
@@ -24,7 +26,7 @@ export default new Vuex.Store({
       //查询之前数组是否存在
       let oldproduct = context.state.cartlist.find(item => item.iid === payload.iid)
 
-      //判断
+      //判断 添加商品的时候是否存在；之前存在就➕1，不存在就就添加进去 
       if (oldproduct) {
         context.commit("addCount",oldproduct)
       } else {
@@ -32,6 +34,8 @@ export default new Vuex.Store({
       //  context.state.cartlist.push(payload)
        context.commit('addToCart',payload)
       }
+
+      
     }
   },
   modules: {
