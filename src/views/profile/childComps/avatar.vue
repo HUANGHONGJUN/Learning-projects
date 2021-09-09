@@ -23,16 +23,21 @@
         ></el-button>
       </div>
     </div>
+    <toast :message="avamessage" :show="avashow"></toast>
   </div>
 </template>
 
 <script>
+import Toast from '../../../components/content/Toast.vue';
 export default {
+  components: { Toast },
   name: "avatar",
   data() {
     return {
       input: "",
       input2: "",
+      avamessage:"",
+      avashow:false
     };
   },
   methods: {
@@ -45,13 +50,19 @@ export default {
           : reject();
       })
         .then(() => {
-          alert("登录成功");
+          this.avamessage= "登录成功",
+          this.avashow = true
           setTimeout(() => {
             this.$router.push("/home");
-          }, 3000);
+          }, 2000);
         })
-        .catch(() => {
-          alert("登录失败");
+        .catch(() => {   
+          this.avashow = true
+          this.avamessage = "登录失败，请核对账号与密码"     
+          setTimeout(()=>{
+            this.avashow = false
+          },1000)
+          
         });
     },
   },

@@ -17,6 +17,7 @@
       <goodslist :goods="recommends" ref="goodslist"></goodslist>
     </scroll>
     <detailbottomnav @addToCart="addToCart"></detailbottomnav>
+    <toast :message="message" :show="show" />
   </div>
 </template>
 
@@ -37,6 +38,7 @@ import DetailParamsInfo from "./childComps/detailParamsInfo.vue";
 import DetailCommentInfo from "./childComps/detailCommentInfo.vue";
 import Goodslist from "../../components/content/goods/Goodslist.vue";
 import Detailbottomnav from "./childComps/detailbottomnav.vue";
+import Toast from '../../components/content/Toast.vue';
 // import { debounce } from "common/utils";
 export default {
   components: {
@@ -50,6 +52,7 @@ export default {
     DetailCommentInfo,
     Goodslist,
     Detailbottomnav,
+    Toast,
   },
 
   data() {
@@ -63,7 +66,9 @@ export default {
       CommentInfo: {},
       recommends: [],
       topy: [],
-      getThemeTopY:null
+      getThemeTopY:null,
+      message:"",
+      show:false
     };
   },
   created() {
@@ -176,7 +181,15 @@ export default {
       product.iid = this.iid
       console.log(this.$store.state.cartlist);
       //将商品添加到购物车里面
-      this.$store.dispatch('addCart',product)
+      this.$store.dispatch('addCart',product).then((res)=>{
+       console.log(res);
+       this.show = true,
+       this.message = res
+
+       setTimeout(()=>{
+         this.show = false
+       },2000)
+      })
     }
   },
 };

@@ -24,17 +24,30 @@ export default new Vuex.Store({
     addCart(context,payload){
       // state.cartlist.push(payload)
       //查询之前数组是否存在
-      let oldproduct = context.state.cartlist.find(item => item.iid === payload.iid)
+      // let oldproduct = context.state.cartlist.find(item => item.iid === payload.iid)
 
-      //判断 添加商品的时候是否存在；之前存在就➕1，不存在就就添加进去 
-      if (oldproduct) {
-        context.commit("addCount",oldproduct)
-      } else {
-       payload.count = 1
-      //  context.state.cartlist.push(payload)
-       context.commit('addToCart',payload)
-      }
+      // //判断 添加商品的时候是否存在；之前存在就➕1，不存在就就添加进去 
+      // if (oldproduct) {
+      //   context.commit("addCount",oldproduct)
+      // } else {
+      //  payload.count = 1
+      // //  context.state.cartlist.push(payload)
+      //  context.commit('addToCart',payload)
+      // }
 
+      return new Promise((resolve)=>{
+        let oldproduct = context.state.cartlist.find(item => item.iid === payload.iid)
+
+        if (oldproduct) {
+          context.commit("addCount",oldproduct);
+          resolve("商品添加成功")
+        } else {
+         payload.count = 1
+        //  context.state.cartlist.push(payload)
+         context.commit('addToCart',payload)
+         resolve("商品数目➕1")
+        }
+      })
       
     }
   },
