@@ -5,7 +5,7 @@ export function getdetail(iid) {
         url: '/detail',
         params: {
             iid
-        }
+        }/*  */
     })
 }
 

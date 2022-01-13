@@ -77,6 +77,7 @@ export default {
     //请求多个商品数据
     gethomegoods(type) {
       const page = this.goods[type].page + 1;
+      //调用接口
       gethomegoods(type, page).then((res) => {
         console.log(res);
         //数组添加
